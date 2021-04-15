@@ -14,7 +14,6 @@ export class User extends BaseEntity {
 
  @Column()
  password: String;
-
  
  @ManyToMany(() => Book)
  @JoinTable()
