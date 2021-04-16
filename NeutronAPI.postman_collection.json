@@ -17,18 +17,486 @@
 		{
 			"name": "AddUser",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Furnonez",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "test3@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "root",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/users/createUser",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"createUser"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "GetUserProfile",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJGdXJub24iLCJtYWlsIjoidGVzdDJAZ21haWwuY29tIiwiaWF0IjoxNjE4NTg0MjM0LCJleHAiOjE2MTg1ODc4MzR9.lEckjT-lNodX8pOx5UAm5NqHwgz5rLvOyz6UOlcyjW",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "localhost:3000/users/profile/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"profile",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "mail",
+							"value": "test2@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "root",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/users/signin",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllBooks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/books",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddTypes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "types",
+							"value": "[\"horror\",\"adventure\",\"action\"]",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/types",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTypes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/types",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddBook",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJGdXJub24iLCJtYWlsIjoidGVzdDJAZ21haWwuY29tIiwiaWF0IjoxNjE4NTc5ODAzLCJleHAiOjE2MTg1ODM0MDN9.7tL8dRAdxeZyCbAw2C8XCO-yVaB4U2pkHEJFZALhWRU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Sherlock Holmes et Son chien",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "Arthur Conan Doyle",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "34",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/books/addBook",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"addBook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMyBooks",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJNYXNhZmlyIiwibWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjE4NTc2NjI1LCJleHAiOjE2MTg1ODAyMjV9.CEJkIBKXZHEHPjk3pv8WzqGltUfFRUOkzWG72qwWgxg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/books/mybooks",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"mybooks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteMyBook",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJNYXNhZmlyIiwibWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjE4NTc2NjI1LCJleHAiOjE2MTg1ODAyMjV9.CEJkIBKXZHEHPjk3pv8WzqGltUfFRUOkzWG72qwWgxg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/books?id=6",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddChapter",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJGdXJub24iLCJtYWlsIjoidGVzdDJAZ21haWwuY29tIiwiaWF0IjoxNjE4NTc5ODAzLCJleHAiOjE2MTg1ODM0MDN9.7tL8dRAdxeZyCbAw2C8XCO-yVaB4U2pkHEJFZALhWRU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "Le chapitre de la fin du début",
+							"type": "text"
+						},
+						{
+							"key": "index",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "book",
+							"value": "9",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/chapters/addChapter",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"chapters",
+						"addChapter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getChapterFromBook",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/chapters/fromBook/9",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"chapters",
+						"fromBook",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteChapter",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJGdXJub24iLCJtYWlsIjoidGVzdDJAZ21haWwuY29tIiwiaWF0IjoxNjE4NTc5ODAzLCJleHAiOjE2MTg1ODM0MDN9.7tL8dRAdxeZyCbAw2C8XCO-yVaB4U2pkHEJFZALhWRU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "book_id",
+							"value": "9",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/chapters",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"chapters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateChapter",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJGdXJub24iLCJtYWlsIjoidGVzdDJAZ21haWwuY29tIiwiaWF0IjoxNjE4NTg0NDAzLCJleHAiOjE2MTg1ODgwMDN9.fudijYgHdatbz6DDlhMWPYSN-6gs1lcx8dinT-0nfkA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "book",
+							"value": "9",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Truc random",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Ce titre de chapitre a été changé.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/chapters/updateChapter",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"chapters",
+						"updateChapter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMyProfile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJGdXJub24iLCJtYWlsIjoidGVzdDJAZ21haWwuY29tIiwiaWF0IjoxNjE4NTg0NDAzLCJleHAiOjE2MTg1ODgwMDN9.fudijYgHdatbz6DDlhMWPYSN-6gs1lcx8dinT-0nfkA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:3000/users/myprofile",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"myprofile"
+					]
+				}
 			},
 			"response": []
 		}
