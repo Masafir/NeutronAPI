@@ -24,6 +24,7 @@ export class UsersController {
   @Get('/myprofile')
   @UseGuards(AuthGuard("jwt"))
   getMyProfile(@GetUser()user: User): Promise<User>{
+    console.log('My profile user : ',user)
     return this.userService.getUserProfile(user.id);
   }
   //UNSECURE GET USER DATA  

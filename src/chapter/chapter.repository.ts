@@ -4,6 +4,7 @@ import { User } from "src/user/user.entity";
 import { EntityRepository, Repository } from "typeorm";
 import { addChapterDto } from "./addChapter.dto";
 import { Chapter } from "./chapter.entity";
+import { updateChapterDto } from "./updateChapter.dto";
 
 @EntityRepository(Chapter)
 export class ChapterRepository extends Repository<Chapter> {
@@ -23,5 +24,22 @@ export class ChapterRepository extends Repository<Chapter> {
       throw new InternalServerErrorException(error);
     }
 
+  }
+
+  async updateChapter(updateChapterDto: updateChapterDto): Promise<Chapter>{
+    const { id,title,content } = updateChapterDto;
+    const editableChapter = await this.findOne(id);
+    editableChapter.title = title;
+    editableChapter.content = content;
+    try{
+      editableChapter.save();
+      return editableChapter;
+    }
+    catch(err)
+    {
+      throw new InternalServerErrorException(err);
+      
+    }
+    
   }
 }

@@ -7,6 +7,7 @@ import { BooksService } from 'src/book/books.service';
 import { addChapterDto } from './addChapter.dto';
 import { User } from 'src/user/user.entity';
 import { deleteChapterDto } from './deleteChapter.dto';
+import { updateChapterDto } from './updateChapter.dto';
 @Injectable()
 export class ChaptersService {
   constructor(
@@ -33,8 +34,22 @@ export class ChaptersService {
     else{
       throw new UnauthorizedException();
     }
+  }
+
+  async updateChapter(updateChapterDto: updateChapterDto,user: User): Promise<Chapter>{
+    const book_founded = await this.booksService.getBookById(updateChapterDto.book);
+    const chapter_founded = await this.ChapterRepository.findOne(updateChapterDto.id);
+    if(chapter_founded && book_founded && book_founded.user_author.id == user.id)
+    {
+      const updatedChapter = await this.ChapterRepository.updateChapter(updateChapterDto);
+      return updatedChapter;
+    }
+    else{
+      throw new UnauthorizedException();
+    }
 
   }
+
   async deleteChapter(deleteChapterDto: deleteChapterDto,user: User): Promise<boolean>{
     const { id,book_id } = deleteChapterDto;
     const book = await this.booksService.getBookById(book_id);

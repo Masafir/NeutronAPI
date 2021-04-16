@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, NotAcceptableException, Param, ParseIntPipe, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotAcceptableException, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/user/get-user.decorator';
 import { User } from 'src/user/user.entity';
@@ -6,6 +6,7 @@ import { addChapterDto } from './addChapter.dto';
 import { Chapter } from './chapter.entity';
 import { ChaptersService } from './chapters.service';
 import { deleteChapterDto } from './deleteChapter.dto';
+import { updateChapterDto } from './updateChapter.dto';
 
 @Controller('chapters')
 export class ChaptersController {
@@ -25,6 +26,13 @@ export class ChaptersController {
   addChapter(@Body()addChapterDto :addChapterDto ,@GetUser()user: User): Promise<Chapter>{
     return this.chaptersService.addChapter(addChapterDto,user);
   }
+
+  @Patch("updateChapter")
+  @UseGuards(AuthGuard("jwt"))
+  updateChapter(@Body()updateChapterDto :updateChapterDto ,@GetUser()user: User): Promise<Chapter>{
+    return this.chaptersService.updateChapter(updateChapterDto,user);
+  }
+
   @Delete()
   @UseGuards(AuthGuard("jwt"))
   deleteChapter(@Body()deleteChapterDto :deleteChapterDto ,@GetUser()user: User) {
