@@ -5,10 +5,12 @@ import { BookRepository } from './book.repository';
 import { BooksController } from './book.controller';
 import { BooksService } from './books.service';
 import { UsersModule } from 'src/user/users.module';
+import { TypesModule } from 'src/typeofbook/type.module';
 
 @Module({
-  imports: [UsersModule,TypeOrmModule.forFeature([BookRepository])],
+  imports: [TypesModule,TypeOrmModule.forFeature([BookRepository])],
   controllers: [BooksController],
-  providers: [BooksService]
+  providers: [BooksService],
+  exports: [BooksService]
 })
 export class BooksModule {}

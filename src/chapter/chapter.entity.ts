@@ -17,6 +17,6 @@ index: number;
 book: Book;
 
 @Column()
-content: string;
+content: String;
 
 }

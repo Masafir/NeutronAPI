@@ -41,7 +41,7 @@ export class UsersService {
   async createUser(user: createUserDto): Promise<User>{
     const { mail,username } = user;
     const newUser = this.UserRepository.createUser(user);
-          return newUser;
+    return newUser;
   }
 
   async deleteUserById(id): Promise<string>{
@@ -59,7 +59,7 @@ export class UsersService {
   async checkConnexion(connexionDto: connexionDto): Promise<User>{
     const { mail,password } = connexionDto;
 
-    const foundedUser = await this.UserRepository.findOne({where: {mail}});
+    const foundedUser = await this.UserRepository.findOne({select: ["password","id"],where: {mail}});
 
     if(foundedUser){
       const checkedPass = await bcrypt.compare(password, foundedUser.password)
@@ -75,4 +75,7 @@ export class UsersService {
       throw new NotFoundException("No user founded.");
     }
   }
+
+  
+  
 }

@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn,ManyToOne,ManyToMany, JoinTable, OneToMany } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn,ManyToOne,ManyToMany, JoinTable, OneToMany, JoinColumn } from "typeorm";
 
 import { User } from '../user/user.entity';
 import { Type } from '../typeofbook/type.entity';
@@ -19,6 +19,7 @@ author: String;
 chapters: Chapter[];
 
 @ManyToOne(() => User, user => user.books)
+@JoinColumn()
 user_author: User;
 
 @ManyToMany(() => Type)

@@ -17,7 +17,6 @@ export class UsersController {
   @Get()
   @UseGuards(AuthGuard("jwt"))
   getUsers(): Promise<User[]>{
-    console.log("GET ALL USERS");
     return this.userService.getUsersProfiles();
   }
 

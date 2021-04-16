@@ -13,7 +13,7 @@ export class User extends BaseEntity {
  @Column()
  mail: String;
 
- @Column()
+ @Column({select: false})
  password: String;
  
  @ManyToMany(() => Book)
