@@ -1,9 +1,14 @@
-import { Injectable, NotAcceptableException, NotFoundException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotAcceptableException, NotFoundException } from '@nestjs/common';
 import { User } from './user.entity';
 import { v1 as uuid } from 'uuid';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from './user.repository';
 import { createUserDto } from './createUser.dto';
+import { connexionDto } from './connexion.dto';
+import { errorConnexionDto } from "./errorConnexion.dto";
+import { saltOrRounds } from './user.repository';
+import * as bcrypt from 'bcrypt';
+
 @Injectable()
 export class UsersService {
   constructor(
@@ -35,22 +40,8 @@ export class UsersService {
 
   async createUser(user: createUserDto): Promise<User>{
     const { mail,username } = user;
-    const userNameAlreadyExist = await this.UserRepository.findOne({where: { username }});
-    const userMailAlreadyExist = await this.UserRepository.findOne({where: { mail }});
-    if(!userNameAlreadyExist)
-    {
-      if(!userMailAlreadyExist)
-      {
-        const newUser = this.UserRepository.createUser(user);
-        return newUser;
-      }
-      else{
-        throw new NotAcceptableException("Mail Adress already exist");
-      }
-    } 
-    else{
-      throw new NotAcceptableException("Username already exist");
-    }
+    const newUser = this.UserRepository.createUser(user);
+          return newUser;
   }
 
   async deleteUserById(id): Promise<string>{
@@ -62,6 +53,26 @@ export class UsersService {
     }
     else{
       return "No users were found.";
+    }
+  }
+
+  async checkConnexion(connexionDto: connexionDto): Promise<User>{
+    const { mail,password } = connexionDto;
+
+    const foundedUser = await this.UserRepository.findOne({where: {mail}});
+
+    if(foundedUser){
+      const checkedPass = await bcrypt.compare(password, foundedUser.password)
+      if(checkedPass)
+      {
+        return await this.getUserProfile(foundedUser.id);
+      }
+      else{
+        throw new InternalServerErrorException("Invalid Pass/Mail.")
+      }
+    }
+    else{
+      throw new NotFoundException("No user founded.");
     }
   }
 }

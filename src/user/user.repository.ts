@@ -3,7 +3,7 @@ import { createUserDto } from "./createUser.dto";
 import { User } from "./user.entity";
 import * as bcrypt from 'bcrypt';
 
-const saltOrRounds = 10;
+export const saltOrRounds = 10;
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -17,7 +17,13 @@ export class UserRepository extends Repository<User> {
     newUser.password = await bcrypt.hash(password, saltOrRounds);
     newUser.books = [];
     newUser.books_fav = [];
-    await newUser.save();
+    try{
+      await newUser.save();
+    }
+    catch(err) {
+      
+      throw new Error("Username or mail are already used.");
+    }
 
     return newUser;
 
