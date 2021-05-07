@@ -15,6 +15,9 @@ name: String;
 @Column()
 author: String;
 
+@Column()
+description: String;
+
 @OneToMany(() => Chapter,chapter => chapter.book)
 chapters: Chapter[];
 

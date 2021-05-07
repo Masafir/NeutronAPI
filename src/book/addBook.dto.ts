@@ -5,7 +5,8 @@ export class addBookDto {
     name: String;
   @IsString()
     author: String;
-    
+  @IsString()
+    description: String;
   @IsNotEmpty()
     type: number;
 }
