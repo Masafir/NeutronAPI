@@ -49,8 +49,10 @@ export class BooksController {
 
   @Post("addBook")
   @UseGuards(AuthGuard("jwt"))
-  addBook(@Body()addBookDto :addBookDto ,@GetUser()user: User): Promise<Book>{
-    return this.booksService.addBooks(addBookDto,user);
+  addBook(@Body()addBookDto :addBookDto ,@GetUser()user: User): Promise<Book[]>{
+    this.booksService.addBooks(addBookDto,user);
+
+    return this.booksService.getBooksProfile(user.id);
   }
 
   @Delete(":id")

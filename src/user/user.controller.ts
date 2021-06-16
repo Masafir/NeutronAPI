@@ -44,8 +44,8 @@ export class UsersController {
       const { id,username,mail } = userCheck;
       const payload: JwtPayload = {id,username,mail};
       const accessToken = await this.JwtService.sign(payload);
-
-      return { accessToken };
+      console.log(payload,accessToken);
+      return { accessToken,id,username };
     }
     else{
       throw new NotAcceptableException("Problem occured in signin.");
