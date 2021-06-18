@@ -3,15 +3,15 @@ export const typeormConfig: TypeOrmModuleOptions = {​
 
   type: 'postgres',​
  
-  host: 'localhost',​
+  host: process.env.DATABASE_HOST || 'localhost',​
  
-  port: 5432,​
+  port: +process.env.DATABASE_PORT || 5432,​
  
-  username: 'postgres',​
+  username: process.env.DATABASE_USER || 'postgres',​
  
-  password: 'uzumaki',​
+  password: process.env.DATABASE_PASSWORD || 'uzumaki',​
  
-  database: 'neutron',​
+  database: process.env.DATABASE_NAME ||'neutron',​
  
   autoLoadEntities: true,​
  

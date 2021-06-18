@@ -29,7 +29,7 @@ export class BooksController {
   }
 
   @Get(":id")
-  @UseGuards(AuthGuard("jwt"))
+  //@UseGuards(AuthGuard("jwt"))
   getBookById(@Param()id: number): Promise<Book> {
     return this.booksService.getBookById(id);
   }
